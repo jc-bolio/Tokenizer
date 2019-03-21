@@ -7,15 +7,21 @@ class main {
         String longText = "Hola mundo! Este es un texto cool";
         String shortText = "Adiós"
 
-        /*Test de estructuras
-        de control y comentarios*/
+        /*Comentario
+         Multilinea*/
 
-        if (x < 5)  //Este es un if
+        if (x < 5)  //Comentario de una sola linea
             double z = 10.5;
-        else if (x > 5)      //Este es un else
+        else if (x > 5)      //Este es un else if
             double z = 2.5;
+        else if (x <= 7)      //Este otro else if
+            double z = 0.3;
+        else if (x >= 7)      //Este otro else if
+            double z = 1.1;
         else (x == 5)
             double z = 3.2;
+
+           /*Comentario multilinea en una linea*/
 
         switch(ans):
             case '12':
