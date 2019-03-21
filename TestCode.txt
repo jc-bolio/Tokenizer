@@ -2,6 +2,7 @@
 class main {
     public static void main() {
         int x = 10;
+        int x2 = 3;
         int y = 2;
         int ans = x + y - 4 ^ 2;
         String longText = "Hola mundo! Este es un texto cool";
