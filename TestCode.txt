@@ -1,1 +1,2 @@
-This program is about slashStarComments /* method */ 123
+This program is about slashStarComments /* method */ 123 //hi guys
+help
