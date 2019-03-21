@@ -22,31 +22,38 @@ public class Table {
     public void addToTable(String token, String type){
         switch (type){
             case "declaration":
-                this.declarations.add(token);
+                if(!this.declarations.contains(token))
+                    this.declarations.add(token);
                 break;
 
             case "id":
-                this.id.add(token);
+                if(!this.id.contains(token))
+                    this.id.add(token);
                 break;
 
             case "literals":
-                this.literal.add(token);
+                if(!this.literal.contains(token))
+                    this.literal.add(token);
                 break;
 
             case "num":
-                this.num.add(token);
+                if(!this.num.contains(token))
+                    this.num.add(token);
                 break;
 
             case "op":
-                this.op.add(token);
+                if(!this.op.contains(token))
+                    this.op.add(token);
                 break;
 
             case "control":
-                this.control.add(token);
+                if(!this.control.contains(token))
+                    this.control.add(token);
                 break;
 
             case "relation":
-                this.relation.add(token);
+                if(!this.relation.contains(token))
+                    this.relation.add(token);
                 break;
         }
     }

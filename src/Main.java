@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -15,6 +16,7 @@ public class Main {
         token.slashSlashComments(ignoreComments);
 
         int t;
+        int tkn;
         while ((t = token.nextToken()) != StreamTokenizer.TT_EOF) {
 
             switch (t) {
@@ -36,10 +38,26 @@ public class Main {
                             break;
 
                         case "if":
-                        case "else":
                         case "switch":
                             System.out.println("Linea " + token.lineno() + ": estructura de control: " + token.sval);
                             table.addToTable(token.sval, "control");
+                            break;
+
+                        case "else":
+                            tkn = token.nextToken();
+                            switch(tkn) {
+                                case StreamTokenizer.TT_WORD:
+                                    if (token.sval.equals("if")){
+                                        System.out.println("Linea " + token.lineno() + ": estructura de control: " + "else if");
+                                        table.addToTable("else if", "control");
+                                    }
+                                    break;
+                                default:
+                                    token.pushBack();
+                                    System.out.println("Linea " + token.lineno() + ": estructura de control: " + "else");
+                                    table.addToTable("else", "control");
+                                    break;
+                            }
                             break;
 
                         default:
@@ -59,40 +77,70 @@ public class Main {
                 break;
 
                 case '+':
-                    System.out.println("Linea " + token.lineno() + ": operador : " + token.sval);
+                    System.out.println("Linea " + token.lineno() + ": operador : " + "+");
                     table.addToTable("+", "op");
                     break;
                 case '-':
-                    System.out.println("Linea " + token.lineno() + ": operador : " + token.sval);
+                    System.out.println("Linea " + token.lineno() + ": operador : " + "-");
                     table.addToTable("-", "op");
                     break;
                 case '/':
-                    System.out.println("Linea " + token.lineno() + ": operador : ");
+                    System.out.println("Linea " + token.lineno() + ": operador : " + "/");
                     table.addToTable("/", "op");
                     break;
                 case '*':
-                    System.out.println("Linea " + token.lineno() + ": operador : " + token.sval);
+                    System.out.println("Linea " + token.lineno() + ": operador : " + "*");
                     table.addToTable("*", "op");
                     break;
                 case '^':
-                    System.out.println("Linea " + token.lineno() + ": operador : " + token.sval);
+                    System.out.println("Linea " + token.lineno() + ": operador : " + "^");
                     table.addToTable("^", "op");
                     break;
 
                 case '<':
-                    int tkn = token.nextToken();
+                    tkn = token.nextToken();
                     switch(tkn) {
                         case '=':
-                            System.out.println("<=");
-                            break;
-                        case '<':
-                            System.out.println("<<");
+                            System.out.println("Linea " + token.lineno() + ": relación : " + "<=");
+                            table.addToTable("<=", "relation");
                             break;
                         default:
                             token.pushBack();
-                            System.out.println("<");
+                            System.out.println("Linea " + token.lineno() + ": relación : " + "<");
+                            table.addToTable("<", "relation");
                             break;
                     }
+                    break;
+
+                case '>':
+                    tkn = token.nextToken();
+                    switch(tkn) {
+                        case '=':
+                            System.out.println("Linea " + token.lineno() + ": relación : " + ">=");
+                            table.addToTable(">=", "relation");
+                            break;
+                        default:
+                            token.pushBack();
+                            System.out.println("Linea " + token.lineno() + ": relación : " + ">");
+                            table.addToTable(">", "relation");
+                            break;
+                    }
+                    break;
+
+                case '=':
+                    tkn = token.nextToken();
+                    switch(tkn) {
+                        case '=':
+                            System.out.println("Linea " + token.lineno() + ": relación : " + "==");
+                            table.addToTable("==", "relation");
+                            break;
+                        default:
+                            token.pushBack();
+                            System.out.println("Linea " + token.lineno() + ": operador : " + "=");
+                            table.addToTable("=", "op");
+                            break;
+                    }
+                    break;
 
             }
         }
