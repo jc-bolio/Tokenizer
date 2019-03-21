@@ -4,7 +4,8 @@ class main {
         int x = 10;
         int y = 2;
         int ans = x + y - 4 ^ 2;
-        String text = "Hola Mundo";
+        String longText = "Hola mundo! Este es un texto cool";
+        String shortText = "Adiós"
 
         /*Test de estructuras
         de control y comentarios*/
@@ -15,7 +16,6 @@ class main {
             double z = 2.5;
         else (x == 5)
             double z = 3.2;
-
 
         switch(ans):
             case '12':

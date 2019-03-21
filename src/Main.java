@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 public class Main {
@@ -14,12 +15,17 @@ public class Main {
         boolean ignoreComments = true;
         token.slashStarComments(ignoreComments);
         token.slashSlashComments(ignoreComments);
-
         int t;
         int tkn;
         while ((t = token.nextToken()) != StreamTokenizer.TT_EOF) {
 
             switch (t) {
+
+                case '\"':
+                    String lit = token.sval;
+                    System.out.println("Linea " + token.lineno() + ": literal: " + lit);
+                    table.addToTable(lit, "literal");
+                    break;
 
                 case StreamTokenizer.TT_WORD:
 
@@ -37,6 +43,8 @@ public class Main {
                             table.addToTable(token.sval, "declaration");
                             break;
 
+                        case "case":
+                        case "default":
                         case "if":
                         case "switch":
                             System.out.println("Linea " + token.lineno() + ": estructura de control: " + token.sval);
@@ -68,8 +76,6 @@ public class Main {
                             break;
                     }
                     break;
-
-
 
                 case StreamTokenizer.TT_NUMBER:
                     System.out.println("Linea " + token.lineno() + ": núm : " + token.nval);
@@ -142,6 +148,8 @@ public class Main {
                     }
                     break;
 
+                default:
+                    System.out.println("Linea " + token.lineno() + ": " + (char) t + " encontrado");
             }
         }
 

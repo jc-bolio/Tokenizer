@@ -31,7 +31,7 @@ public class Table {
                     this.id.add(token);
                 break;
 
-            case "literals":
+            case "literal":
                 if(!this.literal.contains(token))
                     this.literal.add(token);
                 break;
@@ -64,7 +64,7 @@ public class Table {
         System.out.println("id:" + this.id.toString());
         System.out.println("literal:" + this.literal.toString());
         System.out.println("num:" + this.num.toString());
-        System.out.println("operadores:" + this.op.toString());
+        System.out.println("operadores aritméticos:" + this.op.toString());
         System.out.println("estructuras de control:" + this.control.toString());
         System.out.println("relación:" + this.relation.toString());
 
