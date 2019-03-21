@@ -69,5 +69,4 @@ public class Table {
         System.out.println("relación:" + this.relation.toString());
 
     }
-
 }
