@@ -1,13 +1,23 @@
 // Java program to illustrate If statement
 class main {
     public static void main() {
-        int i = 10;
+        int x = 10;
+        int y = 2;
+        int ans = x + y;
+        String text = "Hola Mundo";
 
-        if (i < 15)
-            System.out.println("10 is less than 15");
+        if (x < 5)
+            double z = 10.5;
+        else
+            double z = 2.5;
 
-        /* This statement will be executed
-          as if considers one statement by default */
-        System.out.println("I am Not in if");
+        switch(ans):
+            case 12:
+                ans = x * y;
+                break;
+
+            default:
+                ans = x * y;
+                break;
     }
 }

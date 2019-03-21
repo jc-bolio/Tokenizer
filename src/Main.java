@@ -10,9 +10,9 @@ public class Main {
 
         Table table = new Table();
 
-        boolean ignorarComentarios = true;
-        token.slashStarComments(ignorarComentarios);
-        token.slashSlashComments(ignorarComentarios);
+        boolean ignoreComments = true;
+        token.slashStarComments(ignoreComments);
+        token.slashSlashComments(ignoreComments);
 
         int t;
         while ((t = token.nextToken()) != StreamTokenizer.TT_EOF) {
@@ -21,6 +21,7 @@ public class Main {
                 case StreamTokenizer.TT_WORD:
 
                     switch (token.sval){
+                        case "void":
                         case "class":
                         case "boolean":
                         case "byte":
@@ -29,34 +30,35 @@ public class Main {
                         case "double":
                         case "int":
                         case "String":
-                            System.out.println("Linea " + token.lineno() + ": declaración de " + token.sval);
+                            System.out.println("Linea " + token.lineno() + ": declaración: " + token.sval);
                             table.addToTable(token.sval, "declaration");
                             break;
 
                         default:
-                            System.out.println("Linea " + token.lineno() + ": id : " + token.sval);
+                            token.pushBack();
+                            if(!token.sval.equals("public")&&!token.sval.equals("private")&&!token.sval.equals("static")){
+                                token.nextToken();
+                                System.out.println("Linea " + token.lineno() + ": id : " + token.sval);
+                                table.addToTable(token.sval, "id");
+                            }
+                            token.nextToken();
                             break;
-                    }
+                    } break;
 
                 case StreamTokenizer.TT_NUMBER:
                     System.out.println("Linea " + token.lineno() + ": núm : " + token.nval);
                     break;
 
                 case '+':
-                    break;
-
                 case '-':
-                    break;
-
                 case '/':
-                    break;
-
                 case '*':
+                    System.out.println("Linea " + token.lineno() + ": operador : " + token.sval);
+                    table.addToTable(token.sval, "op");
                     break;
 
-                case '<':
-                {
-                    int tkn = token.nextToken();
+                case '<': {
+                   int tkn = token.nextToken();
                     switch(tkn) {
                         case '=':
                             System.out.println("<=");

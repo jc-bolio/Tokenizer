@@ -52,6 +52,7 @@ public class Table {
     }
 
     public void printTable(){
+        System.out.println("--------------------------------------");
         System.out.println("declaraciones:" + this.declarations.toString());
         System.out.println("id:" + this.id.toString());
         System.out.println("literal:" + this.literal.toString());
