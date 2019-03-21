@@ -43,6 +43,7 @@ public class Main {
 
                         case "case":
                         case "default":
+                        case "break":
                         case "if":
                         case "switch":
                             System.out.println("Linea " + token.lineno() + ": estructura de control: " + token.sval);
@@ -67,7 +68,7 @@ public class Main {
                             break;
 
                         default:
-                            if (!token.sval.equals("public") && !token.sval.equals("private") && !token.sval.equals("static") && !token.sval.equals("break") && !token.sval.equals("case") && !token.sval.equals("default")) {
+                            if (!token.sval.equals("public") && !token.sval.equals("private") && !token.sval.equals("static")) {
                                 System.out.println("Linea " + token.lineno() + ": id: " + token.sval);
                                 table.addToTable(token.sval, "id");
                             }
