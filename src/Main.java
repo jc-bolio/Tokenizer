@@ -18,12 +18,42 @@ public class Main {
             switch (t)
             {
                 case StreamTokenizer.TT_WORD:
-
                     System.out.println("Linea " + token.lineno() + ": id : " + token.sval);
                     break;
+
                 case StreamTokenizer.TT_NUMBER:
                     System.out.println("Linea " + token.lineno() + ": núm : " + token.nval);
                     break;
+
+                case '+':
+                    break;
+
+                case '-':
+                    break;
+
+                case '/':
+                    break;
+
+                case '*':
+                    break;
+
+                case '<':
+                {
+                    int tkn = token.nextToken();
+                    switch(tkn)
+                    {
+                        case '=':
+                            System.out.println("<=");
+                            break;
+                        case '<':
+                            System.out.println("<<");
+                            break;
+                        default:
+                            token.pushBack();
+                            System.out.println("<");
+                            break;
+                    }
+                }
             }
         }
     }
