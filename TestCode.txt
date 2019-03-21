@@ -5,7 +5,8 @@ class main {
         int x2 = 3;
         int y = 2;
         int ans = x + y - 4 ^ 2;
-        String longText = "Hola mundo! Este es un texto cool";
+        String longText = "Este es un string largo";
+        String mediumText = "Hola mundo!"
         String shortText = "Adiós"
 
         /*Comentario
